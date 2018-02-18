@@ -11,7 +11,7 @@ def print_help():
         -i <name>      Input file name (required).
         -o <name>      Output file name (defaults to <input name>_out.mp4).
         -t threshold   Threshold in dB (default value = -40).
-        -d duration    Minimum duration of silence in seconds.
+        -d duration    Minimum duration of silence in seconds. (default value = 3)
         
     Examples:
         python -i video.mp4 
@@ -43,10 +43,10 @@ if __name__ == "__main__":
     else:
         threshold = -40
     
-    if '-t' in sys.argv:
+    if '-d' in sys.argv:
         duration = sys.argv[sys.argv.index('-d') + 1]
     else:
-        duration = -40
+        duration = 3
     
     # Create mp3 ffrom audio for silence detection
     subprocess.call('ffmpeg -i ' + input_filename + ' fileaudio.mp3', shell=True)
